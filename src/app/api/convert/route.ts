@@ -3,15 +3,14 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-// Update the runtime configuration
 export const runtime = 'nodejs';
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 export async function POST(request: Request) {
   try {
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
     const { code, model } = await request.json();
 
     if (!code) {
@@ -43,21 +42,13 @@ JavaScript Code:
 ${code}
 `;
 
-    // Removed debugging logs
-    // console.log('Sending request to OpenAI API...');
-
     const completion = await openai.chat.completions.create({
       model: selectedModel,
       messages: [{ role: 'user', content: prompt }],
       temperature: 0,
     });
 
-    // console.log('Received response from OpenAI API.');
-
     let responseText = completion.choices[0].message?.content || '';
-
-    // Removed response text logging
-    // console.log('Response text:', responseText);
 
     // Remove any text before the first <TypeScriptCode> tag
     const startIndex = responseText.indexOf('<TypeScriptCode>');
@@ -68,7 +59,6 @@ ${code}
       return NextResponse.json(
         {
           error: 'Failed to find <TypeScriptCode> tag in OpenAI response.',
-          // details: responseText, // Optional: include for debugging
         },
         { status: 500 }
       );
@@ -87,7 +77,6 @@ ${code}
       return NextResponse.json(
         {
           error: 'Failed to extract TypeScript code from OpenAI response.',
-          // details: responseText, // Optional: include for debugging
         },
         { status: 500 }
       );
@@ -98,7 +87,6 @@ ${code}
       return NextResponse.json(
         {
           error: 'Failed to extract summary from OpenAI response.',
-          // details: responseText, // Optional: include for debugging
         },
         { status: 500 }
       );
@@ -106,10 +94,6 @@ ${code}
 
     const tsCode = tsCodeMatch[1].trim();
     const summary = summaryMatch[1].trim();
-
-    // Removed extracted content logs
-    // console.log('Extracted TypeScript code:', tsCode);
-    // console.log('Extracted summary:', summary);
 
     return NextResponse.json({ tsCode, summary });
   } catch (error: unknown) {
