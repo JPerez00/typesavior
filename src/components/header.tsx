@@ -18,7 +18,7 @@ export function Header() {
           <Button 
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.jorge-perez.dev/blog">
+          href="https://www.jorge-perez.dev/blog/typesavior-ai-converter">
             Docs
           </Button>
             <Button 
