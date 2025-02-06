@@ -18,7 +18,35 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "TypeSavior - Your AI JavaScript to TypeScript Converter.",
-  description: "Your based JavaScript-to-TypeScript converter. Fast, reliable, and type-safe.",
+  description:
+    "Your based JavaScript-to-TypeScript converter. Fast, reliable, and type-safe.",
+  openGraph: {
+    title: "TypeSavior - Your AI JavaScript to TypeScript Converter.",
+    description:
+      "Your based JavaScript-to-TypeScript converter. Fast, reliable, and type-safe.",
+    url: "https://typesavior.vercel.app/", 
+    siteName: "TypeSavior",
+    images: [
+      {
+        url: "/images/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "TypeSavior - Your AI JavaScript to TypeScript Converter.",
+    description:
+      "Your based JavaScript-to-TypeScript converter. Fast, reliable, and type-safe.",
+    images: [
+      {
+        url: "/images/opengraph-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
