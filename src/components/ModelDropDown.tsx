@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Menu, Transition } from '@headlessui/react';
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 function classNames(...classes: string[]) {
@@ -15,15 +15,15 @@ export const ModelDropDown: React.FC<ModelDropDownProps> = ({
   selectedModel,
   setSelectedModel,
 }) => {
-  const models = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini'];
+  const models = ['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4o-mini'];
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex items-center gap-1 rounded-lg bg-slate-800 py-2 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/20 focus:outline-none data-[hover]:bg-slate-700 data-[open]:bg-slate-700 data-[focus]:outline-1 data-[focus]:outline-white">
+        <MenuButton className="inline-flex items-center gap-1 rounded-lg bg-slate-800 py-2 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/20 focus:outline-none data-[hover]:bg-slate-700 data-[open]:bg-slate-700 data-[focus]:outline-1 data-[focus]:outline-white">
           <span>{selectedModel.toUpperCase()}</span>
           <ChevronDownIcon className="w-5 h-5 -mr-1" aria-hidden="true" />
-        </Menu.Button>
+        </MenuButton>
       </div>
 
       <Transition
@@ -35,10 +35,10 @@ export const ModelDropDown: React.FC<ModelDropDownProps> = ({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="origin-top-right absolute mt-2 w-56 rounded-lg shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <MenuItems className="origin-top-right absolute mt-2 w-56 rounded-lg shadow-lg bg-slate-800 ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-0">
             {models.map((model) => (
-              <Menu.Item key={model}>
+              <MenuItem key={model}>
                 {({ active }) => (
                   <button
                     onClick={() => setSelectedModel(model)}
@@ -50,10 +50,10 @@ export const ModelDropDown: React.FC<ModelDropDownProps> = ({
                     {model.toUpperCase()}
                   </button>
                 )}
-              </Menu.Item>
+              </MenuItem>
             ))}
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Transition>
     </Menu>
   );

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No code provided.' }, { status: 400 });
     }
 
-    const validModels = ['gpt-3.5-turbo', 'gpt-4', 'gpt-4-turbo', 'gpt-4o', 'gpt-4o-mini'];
+    const validModels = ['gpt-3.5-turbo', 'gpt-4-turbo', 'gpt-4o-mini'];
     const selectedModel = validModels.includes(model) ? model : 'gpt-3.5-turbo';
 
     const prompt = `
