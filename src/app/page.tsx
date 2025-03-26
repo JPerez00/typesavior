@@ -26,7 +26,7 @@ export default function Home() {
   const [tsCode, setTsCode] = useState('// Get your TypeScript code here');
   const [summary, setSummary] = useState('');
   const [loading, setLoading] = useState(false);
-  const [selectedModel, setSelectedModel] = useState('gpt-3.5-turbo');
+  const [selectedModel, setSelectedModel] = useState('gpt-4o-mini');
   const [conversionComplete, setConversionComplete] = useState(false);
   const [copied, setCopied] = useState(false);
 
